@@ -1,0 +1,14 @@
+{
+    "name": "com.opensource.tmptextjuicer",
+    "displayName": "TMP Text Juicer",
+    "description": "Add slick animations to TextMeshPro text! Letter per letter animations.",
+    "version": "1.0.0",
+    "unity": "2017.1",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Tymski/TMP-Text-Juicer"
+    },
+    "author": {
+        "name": "Open Source"
+    }
+}

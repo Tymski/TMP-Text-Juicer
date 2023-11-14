@@ -1,3 +1,5 @@
+Edit: This is a UPM package repo made from https://github.com/brunomikoski/TMP-Text-Juicer
+
 # TMP-Text-Juicer
 [![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://github.com/badawe/TMP-Text-Juicer/blob/develop/LICENSE)
 

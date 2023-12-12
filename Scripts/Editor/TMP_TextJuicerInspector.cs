@@ -6,68 +6,63 @@ namespace BrunoMikoski.TextJuicer
     [CustomEditor(typeof(TMP_TextJuicer), true)]
     public sealed class TMP_TextJuicerInspector : Editor
     {
-        private TMP_TextJuicer textJuicer;
-        private SerializedProperty textComponentSerializedProperty;
-        private SerializedProperty animationControlledSerializedProperty;
-        private SerializedProperty playWhenReadySerializedProperty;
-        private SerializedProperty loopSerializedProperty;
-        private SerializedProperty playForeverSerializedProperty;
-        private SerializedProperty durationSerializedProperty;
-        private SerializedProperty delaySerializedProperty;
-        private SerializedProperty progressSerializedProperty;
+        TMP_TextJuicer textJuicer;
 
-        private void OnEnable()
+        SerializedProperty textComponent;
+        SerializedProperty animationControlled;
+        SerializedProperty playWhenReady;
+        SerializedProperty loop;
+        SerializedProperty playForever;
+        SerializedProperty duration;
+        SerializedProperty delay;
+        SerializedProperty progress;
+        SerializedProperty updateMode;
+
+        void OnEnable()
         {
             textJuicer = (TMP_TextJuicer)target;
 
-            textComponentSerializedProperty =  serializedObject.FindProperty("tmpText");
-            durationSerializedProperty =  serializedObject.FindProperty("duration");
-            delaySerializedProperty =  serializedObject.FindProperty("delay");
-            progressSerializedProperty =  serializedObject.FindProperty("progress");
-            playWhenReadySerializedProperty =  serializedObject.FindProperty("playWhenReady");
-            loopSerializedProperty = serializedObject.FindProperty("loop");
-            playForeverSerializedProperty =  serializedObject.FindProperty("playForever");
-            animationControlledSerializedProperty =  serializedObject.FindProperty("animationControlled");
+            textComponent = serializedObject.FindProperty("tmpText");
+            duration = serializedObject.FindProperty("duration");
+            delay = serializedObject.FindProperty("delay");
+            progress = serializedObject.FindProperty("progress");
+            playWhenReady = serializedObject.FindProperty("playWhenReady");
+            loop = serializedObject.FindProperty("loop");
+            playForever = serializedObject.FindProperty("playForever");
+            animationControlled = serializedObject.FindProperty("animationControlled");
+            updateMode = serializedObject.FindProperty("updateMode");
         }
 
         public override void OnInspectorGUI()
         {
-            EditorGUILayout.PropertyField(textComponentSerializedProperty);
-            EditorGUILayout.PropertyField(durationSerializedProperty);
-            EditorGUILayout.PropertyField(delaySerializedProperty);
-            EditorGUILayout.PropertyField(animationControlledSerializedProperty);
-            if (animationControlledSerializedProperty.boolValue)
+            EditorGUILayout.PropertyField(textComponent);
+            EditorGUILayout.PropertyField(duration);
+            EditorGUILayout.PropertyField(delay);
+            EditorGUILayout.PropertyField(animationControlled);
+            if (animationControlled.boolValue)
             {
-                EditorGUILayout.PropertyField(progressSerializedProperty);
+                EditorGUILayout.PropertyField(progress);
             }
             else
             {
-                EditorGUILayout.PropertyField(playWhenReadySerializedProperty);
-                EditorGUILayout.PropertyField(loopSerializedProperty);
-                EditorGUILayout.PropertyField(playForeverSerializedProperty);
+                EditorGUILayout.PropertyField(playWhenReady);
+                EditorGUILayout.PropertyField(loop);
+                EditorGUILayout.PropertyField(playForever);
+                EditorGUILayout.PropertyField(updateMode);
             }
 
             serializedObject.ApplyModifiedProperties();
 
-            if (animationControlledSerializedProperty.boolValue)
-                return;
-
-            if (!Application.isPlaying)
-                return;
+            if (animationControlled.boolValue) return;
+            if (!Application.isPlaying) return;
 
             if (!textJuicer.IsPlaying)
             {
-                if (GUILayout.Button("Play"))
-                {
-                    textJuicer.Play();
-                }
+                if (GUILayout.Button("Play")) textJuicer.Play();
             }
             else
             {
-                if (GUILayout.Button("Stop"))
-                {
-                    textJuicer.Stop();
-                }
+                if (GUILayout.Button("Stop")) textJuicer.Stop();
             }
         }
     }

@@ -7,17 +7,17 @@ namespace BrunoMikoski.TextJuicer
     [Serializable]
     public struct CharacterData
     {
-        private float progress;
+        float progress;
         public float Progress
         {
             get { return progress; }
         }
 
-        private float startingTime;
-        private float totalAnimationTime;
-        private bool playForever;
+        float startingTime;
+        float totalAnimationTime;
+        bool playForever;
 
-        private int materialIndex;
+        int materialIndex;
         public int MaterialIndex
         {
             get
@@ -25,7 +25,7 @@ namespace BrunoMikoski.TextJuicer
                 return materialIndex;
             }
         }
-        private int vertexIndex;
+        int vertexIndex;
         public int VertexIndex
         {
             get
@@ -33,7 +33,7 @@ namespace BrunoMikoski.TextJuicer
                 return vertexIndex;
             }
         }
-        private int index;
+        int index;
         public int Index
         {
             get
@@ -42,8 +42,8 @@ namespace BrunoMikoski.TextJuicer
             }
         }
 
-        public CharacterData( int targetIndex, float startTime, float targetAnimationTime,
-            bool isPlayForever, int targetMaterialIndex, int targetVertexIndex )
+        public CharacterData(int targetIndex, float startTime, float targetAnimationTime,
+            bool isPlayForever, int targetMaterialIndex, int targetVertexIndex)
         {
             index = targetIndex;
             progress = 0.0f;
@@ -54,17 +54,17 @@ namespace BrunoMikoski.TextJuicer
             materialIndex = targetMaterialIndex;
         }
 
-        public void UpdateTime( float time )
+        public void UpdateTime(float time)
         {
-            if ( time < startingTime )
+            if (time < startingTime)
             {
                 progress = 0;
                 return;
             }
 
             float currentProgress = (time - startingTime) / totalAnimationTime;
-            if ( !playForever )
-                currentProgress = Mathf.Clamp01( currentProgress );
+            if (!playForever)
+                currentProgress = Mathf.Clamp01(currentProgress);
 
             progress = currentProgress;
         }
